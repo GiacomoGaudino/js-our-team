@@ -63,13 +63,13 @@ const emailEl = document.getElementById("email");
 const imageEL = document.getElementById("image");
 const rowEl = document.querySelector(".row");
 
-let objectMarkupString = ""
+let teamMarkup = []
 
 for (let i = 0; i < team.length; i++) {
     const element = team[i];
     console.log(element);
     const { name, role, email, image } = team[i];
-    objectMarkupString += `
+    objectMarkup = `
         <div class="col-lg-4">
             <div class="card bg-black text-white">
                 <div class="row g-0">
@@ -80,13 +80,13 @@ for (let i = 0; i < team.length; i++) {
                         <div class="card-body px-4 py-2">
                             <h5 id="name" class="card-title fw-bold">${name}</h5>
                             <p id="role" class="card-subtitle mb-1">${role}</p>
-                            <a id="email" href="mailto:${email}" class="card-link text-decoration-none text-info">${email}</a>
+                            <a id="email" href="mailto:${email}" style="font-size: 0.9rem" class="card-link text-decoration-none text-info">${email}</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>`
-
+    teamMarkup.push(objectMarkup)
 }
-rowEl.innerHTML = objectMarkupString;
+rowEl.innerHTML = teamMarkup;
 
