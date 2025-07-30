@@ -60,8 +60,10 @@ const team = [
 const nameEl = document.getElementById("name");
 const roleEl = document.getElementById("role");
 const emailEl = document.getElementById("email");
-const imageEL = document.getElementById("image");
+const imageEl = document.getElementById("image");
 const rowEl = document.querySelector(".row");
+const formEl = document.querySelector("form");
+
 
 let teamMarkup = []
 
@@ -69,7 +71,7 @@ for (let i = 0; i < team.length; i++) {
     const element = team[i];
     console.log(element);
     const { name, role, email, image } = team[i];
-    objectMarkup = `
+    const objectMarkup = `
         <div class="col-lg-4">
             <div class="card bg-black text-white">
                 <div class="row g-0">
@@ -88,5 +90,33 @@ for (let i = 0; i < team.length; i++) {
         </div>`
     teamMarkup.push(objectMarkup)
 }
-rowEl.innerHTML = teamMarkup;
+rowEl.innerHTML = teamMarkup.join("");
+
+
+formEl.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = nameEl.value;
+    const role = roleEl.value;
+    const email = emailEl.value;
+    const image = imageEl.value;
+    const objectMarkup = `
+        <div class="col-lg-4">
+            <div class="card bg-black text-white">
+                <div class="row g-0">
+                    <div class="col-3">
+                        <img src="${image}" class="img-fluid rounded-start" alt="${name}">
+                    </div>
+                    <div class="col-9">
+                        <div class="card-body px-4 py-2">
+                            <h5 class="card-title fw-bold">${name}</h5>
+                            <p class="card-subtitle mb-1">${role}</p>
+                            <a href="mailto:${email}" style="font-size: 0.9rem" class="card-link text-decoration-none text-info">${email}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    rowEl.innerHTML += objectMarkup
+    formEl.reset();
+})
 
